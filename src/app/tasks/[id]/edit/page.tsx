@@ -1,25 +1,32 @@
-import TaskEditForm from "@/components/taskEditForm"
-import { db } from "@/db"
-import { notFound } from "next/navigation"
+import TaskEditForm from "@/components/taskEditForm";
+import { db } from "@/db";
+import { notFound } from "next/navigation";
 
 interface TaskEditPageProps {
     params: {
-        id: string
-    }
+        id: string;
+    };
 }
 
-export default async function EditTask(props: TaskEditPageProps) {
-    const id = parseInt(props.params.id)
-    const task = await db.task.findFirst({
-        where: {id}
-    })
+export default async function EditTask({ params }: TaskEditPageProps) {
+    const id = parseInt(params.id);
 
-    if(!task){
-        return notFound()
+    if (isNaN(id)) {
+        return notFound();
     }
+
+    const task = await db.task.findUnique({
+        where: { id }
+    });
+
+    if (!task) {
+        return notFound();
+    }
+
     return (
-        <div>
-            <TaskEditForm task={task}/>
+        <div className="container mx-auto p-4">
+            <h1 className="text-2xl font-bold mb-4">Edit Task</h1>
+            <TaskEditForm task={task} />
         </div>
-    )
+    );
 }

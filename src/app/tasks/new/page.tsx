@@ -1,6 +1,6 @@
 
 import { db } from "@/db";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 
@@ -14,7 +14,6 @@ export default function CreateNewTask() {
 
         const date = new Date(dateString)
 
-        // create records in database 
         const Task = await db.task.create({
             data: {
                 task,
@@ -28,7 +27,7 @@ export default function CreateNewTask() {
 
     return (
         <div>
-
+            <Link href={'/'}>Home</Link>
             <form action={createTask} className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
                 <h3 className="text-xl font-bold mb-4">Add New Task</h3>
                 <div className="flex flex-col gap-5">
