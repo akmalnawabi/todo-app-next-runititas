@@ -1,12 +1,12 @@
 'use client'
 
 import { User, Settings, Bell } from "lucide-react";
-import ReactCalendar from 'react-calendar'; // Renamed import to avoid conflict
+import ReactCalendar from 'react-calendar'; 
 import 'react-calendar/dist/Calendar.css';
 import { useState } from 'react';
 
 export default function Calendar() {
-    const [value, setValue] = useState<Date>(new Date()); // Removed null type since react-calendar doesn't return null
+    const [value, setValue] = useState<Date>(new Date()); 
 
     return (
         <div className="hidden md:block">

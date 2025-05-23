@@ -2,13 +2,14 @@ import TaskEditForm from "@/components/taskEditForm";
 import { db } from "@/db";
 import { notFound } from "next/navigation";
 
-interface TaskEditPageProps {
+interface PageProps {
     params: {
         id: string;
     };
+    searchParams?: Record<string, string | string[] | undefined>;
 }
 
-export default async function EditTask({ params }: TaskEditPageProps) {
+export default async function EditTask({ params }: PageProps) {
     const id = parseInt(params.id);
 
     if (isNaN(id)) {

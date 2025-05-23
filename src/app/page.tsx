@@ -22,12 +22,10 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col md:flex-row w-full min-h-screen">
-      {/* Dashboard - now wrapped in HamburgerMenu */}
       <div className="md:w-1/5">
         <Dashboard />
       </div>
 
-      {/* Main Content */}
       <div className="w-full md:w-3/5 p-4">
         <div className="flex justify-between items-center p-3">
           <div className="flex flex-col">
@@ -40,8 +38,7 @@ export default async function Home() {
         </div>
         <div className="space-y-2">{renderedTasks}</div>
       </div>
-
-      {/* Calendar - hidden on mobile */}
+      
       <div className="hidden md:block md:w-1/5 p-2">
         <Calendar />
       </div>

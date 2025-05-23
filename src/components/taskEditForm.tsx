@@ -1,7 +1,6 @@
 'use client'
 
 import type { Task } from "@/generated/prisma"
-import { Editor } from "@monaco-editor/react"
 import { useState } from "react"
 import * as actions from "@/actions"
 
