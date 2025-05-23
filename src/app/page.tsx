@@ -38,7 +38,7 @@ export default async function Home() {
         </div>
         <div className="space-y-2">{renderedTasks}</div>
       </div>
-      
+
       <div className="hidden md:block md:w-1/5 p-2">
         <Calendar />
       </div>

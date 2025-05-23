@@ -6,7 +6,7 @@ interface PageProps {
     params: {
         id: string;
     };
-    searchParams?: Record<string, string | string[] | undefined>;
+    searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 export default async function EditTask({ params }: PageProps) {
@@ -27,7 +27,7 @@ export default async function EditTask({ params }: PageProps) {
     return (
         <div className="container mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Edit Task</h1>
-            <TaskEditForm task={task} />
+            <TaskEditForm key={task.id} task={task} />
         </div>
     );
 }
