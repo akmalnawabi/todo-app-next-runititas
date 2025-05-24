@@ -1,12 +1,13 @@
 import Calendar from "@/components/calender";
 import Dashboard from "@/components/dashboard";
 import { db } from "@/db";
+import { Task } from "@/generated/prisma";
 import Link from "next/link";
 
 export default async function Home() {
-  const tasks = await db.task.findMany();
+  const tasks: Task[] = await db.task.findMany();
 
-  const renderedTasks = tasks.map((t: any) => {
+  const renderedTasks = tasks.map((t: Task) => {
     return (
       <Link href={`/tasks/${t.id}`} key={t.id}
         className="flex justify-between items-center p-3 rounded hover:bg-gray-50"
@@ -15,7 +16,7 @@ export default async function Home() {
           <div className="text-lg text-gray-900">{t.task}</div>
           <div className="text-blue-400 text-sm">{t.date.toLocaleDateString()}</div>
         </div>
-        <div className={`w-4 h-4 rounded-full ${t.completed ? 'bg-green-500' : 'border border-gray-300'}`}></div>
+        <div className={`w-4 h-4 rounded-full ${t.completed ? 'bg-blue-500' : 'border border-gray-300'}`}></div>
       </Link>
     )
   })
