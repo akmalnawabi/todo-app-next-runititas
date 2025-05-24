@@ -1,30 +1,24 @@
 import TaskEditForm from "@/components/taskEditForm";
 import { db } from "@/db";
 import { notFound } from "next/navigation";
-import { JSX } from "react";
 
-type Params = {
-    id: string;
-};
-
-interface PageProps {
-    params: Params;
-    searchParams?: { [key: string]: string | string[] | undefined };
-}
-
-export default async function EditTask({ params }: PageProps): Promise<JSX.Element> {
-    const id = parseInt(params.id);
+export default async function EditTask({
+    params,
+}: {
+    params: { id: string };
+}) {
+    const id = Number(params.id);
 
     if (isNaN(id)) {
-        notFound();
+        return notFound();
     }
 
     const task = await db.task.findUnique({
-        where: { id }
+        where: { id },
     });
 
     if (!task) {
-        notFound();
+        return notFound();
     }
 
     return (
