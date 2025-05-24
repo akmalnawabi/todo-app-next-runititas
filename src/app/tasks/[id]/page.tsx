@@ -4,15 +4,18 @@ import { notFound } from "next/navigation"
 import { Pencil, Trash2 } from "lucide-react"
 import * as actions from '@/actions'
 
-interface ShowTasksProps {
+interface PageProps {
     params: {
         id: string
     }
+    searchParams?: {
+        [key: string]: string | string[] | undefined
+      }
 }
 
-export default async function ShowTasksPage(props: ShowTasksProps) {
+export default async function ShowTasksPage({params}: PageProps) {
     const task = await db.task.findFirst({
-        where: {id: parseInt(props.params.id)}
+        where: {id: parseInt(params.id)}
     })
 
     if(!task){
