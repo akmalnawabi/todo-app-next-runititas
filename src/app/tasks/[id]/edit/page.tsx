@@ -2,6 +2,9 @@ import TaskEditForm from "@/components/taskEditForm";
 import { db } from "@/db";
 import { notFound } from "next/navigation";
 
+export const dynamicParams = true;
+
+
 export default async function EditTask({
     params,
 }: {
