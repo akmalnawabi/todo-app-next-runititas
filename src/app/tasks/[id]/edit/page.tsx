@@ -1,30 +1,30 @@
-import { notFound } from "next/navigation";
-import { db } from "@/db";
-import TaskEditForm from "@/components/taskEditForm";
+// import { notFound } from "next/navigation";
+// import { db } from "@/db";
+// import TaskEditForm from "@/components/taskEditForm";
 
-interface PageProps {
-    params: {
-        id: string;
-    };
-    searchParams?: {
-        [key: string]: string | string[] | undefined;
-    };
-}
+// interface PageProps {
+//     params: {
+//         id: string;
+//     };
+//     searchParams?: {
+//         [key: string]: string | string[] | undefined;
+//     };
+// }
 
-export default async function EditTask({ params }: PageProps) {
-    const id = parseInt(params.id);
-    if (isNaN(id)) return notFound();
+// export default async function EditTask({ params }: PageProps) {
+//     const id = parseInt(params.id);
+//     if (isNaN(id)) return notFound();
 
-    const task = await db.task.findUnique({
-        where: { id }
-    });
+//     const task = await db.task.findUnique({
+//         where: { id }
+//     });
 
-    if (!task) return notFound();
+//     if (!task) return notFound();
 
-    return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Edit Task</h1>
-            <TaskEditForm task={task} />
-        </div>
-    );
-}
+//     return (
+//         <div className="container mx-auto p-4">
+//             <h1 className="text-2xl font-bold mb-4">Edit Task</h1>
+//             <TaskEditForm task={task} />
+//         </div>
+//     );
+// }
