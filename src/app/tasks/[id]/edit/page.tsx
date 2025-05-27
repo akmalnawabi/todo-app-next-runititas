@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { db } from "@/db";
 import TaskEditForm from "@/components/taskEditForm";
+import Link from "next/link";
 
 interface PageProps {
     params: {
@@ -23,6 +24,7 @@ export default async function EditTask({ params }: PageProps) {
 
     return (
         <div className="container mx-auto p-4">
+            <Link href={`/`} className="font-bold">Home</Link>
             <h1 className="text-2xl font-bold mb-4">Edit Task</h1>
             <TaskEditForm task={task} />
         </div>
