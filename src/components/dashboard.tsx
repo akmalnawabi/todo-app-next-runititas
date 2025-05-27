@@ -1,33 +1,48 @@
-import { Star, Leaf, User, BatteryCharging, UserCircle, PlusCircle } from "lucide-react";
+import { Star, Leaf, User, BatteryCharging, UserCircle, PlusCircle, Search } from "lucide-react";
 import { HamburgerMenu } from "@/components/humburgerMenu";
 
-export default function Dashboard() {
+interface DashboardProps {
+    totalCount: number;
+    todayCount: number;
+    completedCount: number;
+}
+
+export default function Dashboard({ totalCount, todayCount, completedCount }: DashboardProps) {
     return (
         <HamburgerMenu>
-            <aside className="bg-white p-5 h-full md:h-auto">
+            <aside className="bg-gray-50 p-5 h-full md:h-auto">
                 <h2 className="text-xl font-bold mb-4 flex"><Leaf className="text-blue-500 mr-2 w-5" />Rutinintas</h2>
-                <input
-                    type="text"
-                    placeholder="Search"
-                    className="w-full p-1 border border-gray-300 rounded-xl mb-4"
-                />
+                <div className="relative">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        className="w-full p-1 border border-gray-300 rounded-xl mb-4 bg-gray-200"
+                    />
+                    <div><Search className="absolute inset-y-1 right-2 flex items-center text-gray-400" /></div>
+                </div>
                 <div className="mb-4">
-                    <h3 className="text-sm text-gray-600 mb-2">Favorites</h3>
-                    <ul className="space-y-2 font-semibold text-sm text-gray-800">
-                        <li className="flex"><BatteryCharging className="text-blue-500 mr-1 w-5" />My Day</li>
+                    <h3 className="text-sm text-gray-600 mb-3">Favorites</h3>
+                    <ul className="space-y-2 font-semibold text-sm p-2 text-gray-800">
+                        <li className="flex relative"><BatteryCharging className="text-blue-500 mr-1 w-5" />My Day  <span className="bg-gray-200 absolute right-0 text-xs px-2 py-0.5 rounded-full">
+                            {todayCount}
+                        </span></li>
                         <li className="flex"><Star className="text-blue-500 mr-1 w-5" />Important</li>
                         <li className="flex"><User className="text-blue-500 mr-1 w-5" />Personal</li>
-                        <li className="flex"><UserCircle className="text-blue-500 mr-1 w-5" />All</li>
-                        <li className="flex"><PlusCircle className="text-blue-500 mr-1 w-5" />Completed</li>
+                        <li className="flex relative"><UserCircle className="text-blue-500 mr-1 w-5" />All <span className="bg-gray-200 absolute right-0 text-xs px-2 py-0.5 rounded-full">
+                            {totalCount}
+                        </span></li>
+                        <li className="flex relative"><PlusCircle className="text-blue-500 mr-1 w-5" />Completed <span className="bg-gray-200 absolute right-0 text-xs px-2 py-0.5 rounded-full">
+                            {completedCount}
+                        </span></li>
                         <li className="flex"><Leaf className="text-blue-500 mr-1 w-5" />Assigned to me</li>
                     </ul>
                 </div>
                 <div>
-                    <h3 className="text-sm text-gray-600 mb-2">Your own tags</h3>
-                    <ul className="space-y-2 text-sm font-semibold text-gray-800">
-                        <li>GoPay</li>
-                        <li>Kretya Studio</li>
-                        <li>Content Dump</li>
+                    <h3 className="text-sm text-gray-600 my-3">Your own tags</h3>
+                    <ul className="space-y-2 text-sm p-2 font-semibold text-gray-800">
+                        <li className="flex"><PlusCircle className="text-blue-500 mr-1 w-5" />GoPay</li>
+                        <li className="flex"><Leaf className="text-gray-900 mr-1 w-5" />Kretya Studio</li>
+                        <li className="flex"><Star className="text-yellow-500 mr-1 w-5" />Content Dump</li>
                     </ul>
                 </div>
             </aside>
