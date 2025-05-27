@@ -28,7 +28,7 @@ export default function CreateNewTask() {
     return (
         <div>
             <Link href={'/'}>Home</Link>
-            <form action={createTask} className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+            <form action={createTask} className="max-w-md mx-auto p-6 bg-white rounded-lg shadow">
                 <h3 className="text-xl font-bold mb-4">Add New Task</h3>
                 <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-1">
