@@ -13,10 +13,6 @@ export default function TaskEditForm({task}: TaskEditFormProps){
     const [newTask, setNewTask] = useState(task.task)
     const [newDate, setNewDate] = useState(task.date.toISOString().split("T")[0])
 
-    const handleChange = (value: string = '') => {
-        setNewTask(value);
-    }
-
     const editTaskAction = actions.editTask.bind(null, task.id)
 
     return (
