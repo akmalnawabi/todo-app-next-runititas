@@ -1,12 +1,17 @@
 import CalendarPage from "@/components/calender";
 import Dashboard from "@/components/dashboard";
 import { db } from "@/db";
-import { Task } from "@/generated/prisma";
+import { Task } from "@prisma/client";
 import { Check, Star } from "lucide-react";
 import Link from "next/link";
 
+// Define a type that explicitly includes the category field
+type TaskWithCategory = Task & {
+  category: string | null;
+};
+
 export default async function Home() {
-  const tasks: Task[] = await db.task.findMany();
+  const tasks = await db.task.findMany() as TaskWithCategory[];
 
   const totalCount = tasks.length;
 
@@ -20,23 +25,41 @@ export default async function Home() {
     );
   }).length;
 
-  const renderedTasks = tasks.map((t: Task) => {
+  // Type-safe category counting function
+  const countByCategory = (category: string) =>
+    tasks.filter(t => t.category === category).length;
+
+  const importantCount = countByCategory('Important');
+  const personalCount = countByCategory('Personal');
+  const assignedCount = countByCategory('Assigned to me');
+  const gopayCount = countByCategory('GoPay');
+  const kretyaCount = countByCategory('Kretya Studio');
+  const contentDumpCount = countByCategory('Content Dump');
+
+  const renderedTasks = tasks.map((t) => {
     return (
       <Link href={`/tasks/${t.id}`} key={t.id}
         className="flex justify-between items-center p-3 rounded hover:bg-gray-50"
       >
         <div className="flex flex-col">
           <div className="text-md text-gray-900">{t.task}</div>
-          <div className="text-blue-400 text-sm">{t.date.toLocaleDateString()}</div>
+          <div className="flex items-center gap-2">
+            {t.category && (
+              <span className="text-sm font-semibold text-gray-400 py-0.5">
+                {t.category} -
+              </span>
+            )}
+            <span className="text-blue-400 text-sm">{t.date.toDateString()}</span>
+          </div>
         </div>
-        <Star className={`w-4 h-4 rounded-full ${t.completed ? 'text-blue-500 fill-blue-500' : 'text-gray-300'}`}></Star>
+        <Star className={`w-4 h-4 rounded-full ${t.completed ? 'text-blue-500 fill-blue-500' : 'text-gray-300'}`} />
       </Link>
-    )
-  })
+    );
+  });
 
-  const completedTasks = tasks.filter((t) => t.completed)
+  const completedTasks = tasks.filter((t) => t.completed);
   const completedCount = completedTasks.length;
-  const renderedCompleted = completedTasks.map((t: Task) => {
+  const renderedCompleted = completedTasks.map((t) => {
     return (
       <Link
         href={`/tasks/${t.id}`}
@@ -45,23 +68,36 @@ export default async function Home() {
       >
         <Check className="text-white bg-blue-500 rounded w-4 h-4" />
         <span className="text-gray-900 ml-2">{t.task}</span>
+        {t.category && (
+          <span className="text-xs bg-gray-200 px-2 py-0.5 rounded-full ml-2">
+            {t.category}
+          </span>
+        )}
       </Link>
-    )
-  })
+    );
+  });
 
   return (
     <div className="flex flex-col md:flex-row w-full min-h-screen">
       <div className="md:w-1/5">
-        <Dashboard totalCount={totalCount}
+        <Dashboard
+          totalCount={totalCount}
           completedCount={completedCount}
-          todayCount={todayCount} />
+          todayCount={todayCount}
+          importantCount={importantCount}
+          personalCount={personalCount}
+          assignedCount={assignedCount}
+          gopayCount={gopayCount}
+          kretyaCount={kretyaCount}
+          contentDumpCount={contentDumpCount}
+        />
       </div>
 
       <div className="w-full md:w-3/5 p-4">
         <div className="flex justify-between items-center p-3">
           <div className="flex flex-col">
             <h2 className="font-bold text-xl">My Day</h2>
-            <p className="text-gray-500">May 2025</p>
+            <p className="text-gray-500">{new Date().toLocaleString('default', { month: 'long', year: 'numeric' })}</p>
           </div>
           <Link href="/tasks/new" className="bg-gray-100 rounded-xl p-3 text-blue-500 text-sm hover:bg-blue-200 transition-colors">
             + New Task
