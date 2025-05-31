@@ -5,7 +5,6 @@ import { Task } from "@prisma/client";
 import { Check, Star } from "lucide-react";
 import Link from "next/link";
 
-// Define a type that explicitly includes the category field
 type TaskWithCategory = Task & {
   category: string | null;
 };
@@ -25,7 +24,6 @@ export default async function Home() {
     );
   }).length;
 
-  // Type-safe category counting function
   const countByCategory = (category: string) =>
     tasks.filter(t => t.category === category).length;
 
@@ -68,11 +66,6 @@ export default async function Home() {
       >
         <Check className="text-white bg-blue-500 rounded w-4 h-4" />
         <span className="text-gray-900 ml-2">{t.task}</span>
-        {t.category && (
-          <span className="text-xs bg-gray-200 px-2 py-0.5 rounded-full ml-2">
-            {t.category}
-          </span>
-        )}
       </Link>
     );
   });

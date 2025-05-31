@@ -5,8 +5,14 @@ import { useState } from "react"
 import * as actions from "@/actions"
 
 interface TaskEditFormProps {
-    task: Task
-}
+    task: {
+        id: number;
+        task: string;
+        date: Date;
+        completed: boolean;
+        category?: string | null;
+    };
+  }
 
 export default function TaskEditForm({ task }: TaskEditFormProps) {
 
