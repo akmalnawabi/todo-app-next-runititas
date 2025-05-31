@@ -8,7 +8,7 @@ interface TaskEditFormProps {
     task: Task
 }
 
-export default function TaskEditForm({task}: TaskEditFormProps){
+export default function TaskEditForm({ task }: TaskEditFormProps) {
 
     const [newTask, setNewTask] = useState(task.task)
     const [newDate, setNewDate] = useState(task.date.toISOString().split("T")[0])
