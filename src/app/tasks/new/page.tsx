@@ -1,4 +1,4 @@
-import { db } from "@/db";
+import { db } from "db";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Prisma } from '@prisma/client';

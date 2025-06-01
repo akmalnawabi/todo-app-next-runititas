@@ -1,8 +1,8 @@
 'use client'
 
-import type { Task } from "@/generated/prisma"
+import type { Task } from "generated/prisma"
 import { useState } from "react"
-import * as actions from "@/actions"
+import * as actions from "actions"
 
 interface TaskEditFormProps {
     task: {

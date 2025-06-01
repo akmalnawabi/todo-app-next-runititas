@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { db } from "@/db";
-import TaskEditForm from "@/components/taskEditForm";
+import { db } from "db";
+import TaskEditForm from "components/taskEditForm";
 import Link from "next/link";
 
 interface PageProps {

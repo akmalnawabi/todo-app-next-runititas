@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.13.8",
     "@monaco-editor/react": "^4.7.0-rc.0",
     "@prisma/client": "^6.8.2",
     "@radix-ui/react-slot": "^1.2.3",
@@ -19,7 +20,7 @@
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-calendar": "^5.1.0",
-    "react-day-picker": "^9.7.0",
+    "react-day-picker": "^8.10.1",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.3.0"
   },
