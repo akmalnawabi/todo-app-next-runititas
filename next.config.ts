@@ -5,7 +5,9 @@ const nextConfig: NextConfig = {
 };
 
 // module.exports = {
-//   output: 'export',
+//   typescript: {
+//     ignoreBuildErrors: true,
+//   },
 // }
 
 export default nextConfig;

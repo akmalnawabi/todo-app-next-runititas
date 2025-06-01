@@ -1,8 +1,8 @@
 
 import { Task } from "@prisma/client";
-import CalendarPage from "components/calender";
-import Dashboard from "components/dashboard";
-import { db } from "db";
+import CalendarPage from "@/components/calender";
+import Dashboard from "@/components/dashboard";
+import { db } from "@/db";
 import { Check, Star } from "lucide-react";
 import Link from "next/link";
 
