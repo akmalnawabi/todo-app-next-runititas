@@ -3,11 +3,11 @@ import { db } from "db";
 import TaskEditForm from "components/taskEditForm";
 import Link from "next/link";
 
-export default async function EditTaskPage({
-    params
-}: {
+interface PageProps {
     params: { id: string }
-}) {
+}
+
+export default async function EditTaskPage({ params }: PageProps) {
     const id = parseInt(params.id);
     if (isNaN(id) || id <= 0) return notFound();
 
@@ -23,7 +23,7 @@ export default async function EditTaskPage({
                 <Link href="/" className="font-bold hover:text-blue-600 transition-colors">
                     ← Back to Home
                 </Link>
-                <h1 className="text-2xl font-bold my-4">Edit Task #{task.id}</h1>
+                <h1 className="text-2xl font-bold my-4">Edit Task {task.id}</h1>
                 <TaskEditForm task={task} />
             </div>
         );
