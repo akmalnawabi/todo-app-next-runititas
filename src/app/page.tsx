@@ -17,7 +17,7 @@ export default async function Home() {
 
   const today = new Date();
   const todayCount = tasks.filter((t) => {
-    const taskDate = new Date(t.date);
+  const taskDate = new Date(t.date);
     return (
       taskDate.getFullYear() === today.getFullYear() &&
       taskDate.getMonth() === today.getMonth() &&

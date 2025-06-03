@@ -1,6 +1,5 @@
 import { Star, Leaf, User, BatteryCharging, UserCircle, PlusCircle, Search } from "lucide-react";
-import { HamburgerMenu } from "./humburgerMenu";
-// import { HamburgerMenu } from "@/components/humburgerMenu";
+import { HamburgerMenu } from "@/components/humburgerMenu";
 
 
 interface DashboardProps {
