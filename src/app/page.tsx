@@ -92,6 +92,7 @@ export default async function Home() {
           <div className="flex flex-col">
             <h2 className="font-bold text-xl">My Day</h2>
             <p className="text-gray-500">{new Date().toLocaleString('default', { month: 'long', year: 'numeric' })}</p>
+            <input type="search" />
           </div>
           <Link href="/tasks/new" className="bg-gray-100 rounded-xl p-3 text-blue-500 text-sm hover:bg-blue-200 transition-colors">
             + New Task
