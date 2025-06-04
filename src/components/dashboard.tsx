@@ -36,9 +36,8 @@ export default function Dashboard({
     kretyaCount,
     contentDumpCount
 }: DashboardProps) {
-    const [searchQuery, setSearchQuery] = useState('');
+    const [search, setSearch] = useState('');
 
-    // Structure the menu items for easier filtering
     const menuItems: MenuItem[] = [
         { id: 'my-day', label: 'My Day', icon: <BatteryCharging className="text-blue-500 mr-1 w-5" />, count: todayCount, category: 'favorites' },
         { id: 'important', label: 'Important', icon: <Star className="text-blue-500 mr-1 w-5" />, count: importantCount, category: 'favorites' },
@@ -51,12 +50,10 @@ export default function Dashboard({
         { id: 'content-dump', label: 'Content Dump', icon: <Star className="text-yellow-500 mr-1 w-5" />, count: contentDumpCount || 0, category: 'tags' },
     ];
 
-    // Filter items based on search query
     const filteredItems = menuItems.filter(item =>
-        item.label.toLowerCase().includes(searchQuery.toLowerCase())
+        item.label.toLowerCase().includes(search.toLowerCase())
     );
 
-    // Separate filtered items back into categories
     const filteredFavorites = filteredItems.filter(item => item.category === 'favorites');
     const filteredTags = filteredItems.filter(item => item.category === 'tags');
 
@@ -69,8 +66,8 @@ export default function Dashboard({
                         type="text"
                         placeholder="Search"
                         className="w-full p-1 border border-gray-300 rounded-xl mb-4 bg-gray-200"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
                     />
                     <div><Search className="absolute inset-y-1 right-2 flex items-center text-gray-400" /></div>
                 </div>
