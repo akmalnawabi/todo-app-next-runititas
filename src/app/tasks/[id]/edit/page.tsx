@@ -28,7 +28,7 @@ export default async function EditTaskPage({ params }: PageProps) {
             </div>
         );
     } catch (error) {
-        console.error("Failed to fetch task:", error);
+        console.error("Failed too fetch task:", error);
         return notFound();
     }
 }
