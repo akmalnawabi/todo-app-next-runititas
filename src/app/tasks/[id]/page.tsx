@@ -4,11 +4,11 @@ import { notFound, redirect } from "next/navigation";
 import { Pencil, Trash2 } from "lucide-react";
 import * as actions from 'actions';
 
-interface PageProps {
-    params: { id: string };
-}
+// interface PageProps {
+//     params: { id: string };
+// }
 
-export default async function ShowTasksPage({ params }: PageProps) {
+export default async function ShowTasksPage({ params }: any) {
     const taskId = parseInt(params.id);
     if (isNaN(taskId) || taskId <= 0) {
         return notFound();
