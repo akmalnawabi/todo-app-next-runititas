@@ -1,4 +1,3 @@
-
 import { Task } from "@prisma/client";
 import CalendarPage from "@/components/calender";
 import Dashboard from "@/components/dashboard";
@@ -10,14 +9,24 @@ type TaskWithCategory = Task & {
   category: string | null;
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function Home() {
-  const tasks = await db.task.findMany() as TaskWithCategory[];
+  let tasks: TaskWithCategory[] = [];
+
+  try {
+    tasks = await db.task.findMany() as TaskWithCategory[];
+  } catch (error) {
+    console.error('Failed to fetch tasks:', error);
+    // You might want to show an error state here
+  }
 
   const totalCount = tasks.length;
 
   const today = new Date();
   const todayCount = tasks.filter((t) => {
-  const taskDate = new Date(t.date);
+    const taskDate = new Date(t.date);
     return (
       taskDate.getFullYear() === today.getFullYear() &&
       taskDate.getMonth() === today.getMonth() &&
