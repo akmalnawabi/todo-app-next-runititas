@@ -19,7 +19,6 @@ export default async function Home() {
     tasks = await db.task.findMany() as TaskWithCategory[];
   } catch (error) {
     console.error('Failed to fetch tasks:', error);
-    // You might want to show an error state here
   }
 
   const totalCount = tasks.length;

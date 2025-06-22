@@ -3,11 +3,11 @@ import { db } from "db";
 import TaskEditForm from "components/taskEditForm";
 import Link from "next/link";
 
-// interface PageProps {
-//     params: { id: string }
-// }
+interface PageProps {
+    params: { id: string }
+}
 
-export default async function EditTaskPage({ params }: any) {
+export default async function EditTaskPage({ params }: PageProps) {
     const id = parseInt(params.id);
     if (isNaN(id) || id <= 0) return notFound();
 
